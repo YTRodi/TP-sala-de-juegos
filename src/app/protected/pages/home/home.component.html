@@ -13,6 +13,15 @@
 
     <mat-nav-list>
       <a
+        [routerLink]="['/dashboard/home']"
+        mat-list-item
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <a
         [routerLink]="['./FALTA AGREGAR RUTA']"
         mat-list-item
         (click)="sidenav.toggle()"
