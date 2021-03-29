@@ -13,16 +13,16 @@
 
     <mat-nav-list>
       <a
-        [routerLink]="['/dashboard/home']"
+        [routerLink]="['/protected/dashboard']"
         mat-list-item
         (click)="sidenav.toggle()"
       >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span>Home</span>
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
       </a>
 
       <a
-        [routerLink]="['./FALTA AGREGAR RUTA']"
+        [routerLink]="['/protected/dashboard']"
         mat-list-item
         (click)="sidenav.toggle()"
       >
@@ -33,7 +33,7 @@
       <mat-divider></mat-divider>
 
       <a
-        [routerLink]="['/dashboard/about']"
+        [routerLink]="['/protected/about']"
         mat-list-item
         (click)="sidenav.toggle()"
       >
