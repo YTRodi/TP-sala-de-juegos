@@ -1,1 +1,102 @@
-<p>about works!</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayoutAlign="center"
+    fxLayoutGap="20px"
+    class="card_about"
+  >
+    <div fxFlex="30">
+      <h1 class="text_about">Rodi Yago</h1>
+      <h3 class="text_about">
+        Software Developer at Revolt Digital - IT Student
+      </h3>
+
+      <mat-divider></mat-divider>
+      <br />
+
+      <img
+        src="../../../../assets/images/perfil.png"
+        alt="img user"
+        class="about-image"
+      />
+    </div>
+
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center"
+      fxFlex="45"
+      fxLayoutGap="65px"
+    >
+      <div fxFlex="40">
+        <h3 class="text_about">Sobre mi</h3>
+
+        <mat-divider></mat-divider>
+        <br />
+
+        <div class="content">
+          <p>¡Hola, soy Yago!</p>
+          <p>
+            Un futuro profesional el cuál posee como único propósito: aprender y
+            nunca dejar de hacerlo.
+          </p>
+          <p>
+            Actualmente soy desarrollador de software en Revolt Digital,
+            estudiante y ayudante de cátedra en UTN Fra.
+          </p>
+          <p>Manejo tecnologías web como:</p>
+
+          <div
+            fxLayout="row wrap"
+            fxLayoutAlign="center"
+            fxLayoutAlign="space-evenly center"
+            fxLayoutGap="5px"
+          >
+            <img
+              *ngFor="let icon of listIcons"
+              [src]="icon.src"
+              [alt]="icon.alt"
+              width="60"
+              height="60"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div fxFlex="35">
+        <h3 class="text_about">Juego propio</h3>
+
+        <mat-divider></mat-divider>
+        <br />
+
+        <div class="content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            deserunt aspernatur vel at voluptatibus alias eveniet error corrupti
+            totam iure facilis est voluptas sed debitis tempore excepturi id
+            nemo ipsam!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            deserunt aspernatur vel at voluptatibus alias eveniet error corrupti
+            totam iure facilis est voluptas sed debitis tempore excepturi id
+            nemo ipsam!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            deserunt aspernatur vel at voluptatibus alias eveniet error corrupti
+            totam iure facilis est voluptas sed debitis tempore excepturi id
+            nemo ipsam!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            deserunt aspernatur vel at voluptatibus alias eveniet error corrupti
+            totam iure facilis est voluptas sed debitis tempore excepturi id
+            nemo ipsam!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
