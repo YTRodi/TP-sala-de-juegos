@@ -6,12 +6,14 @@ import { MaterialModule } from '../material/material.module';
 import { ProtectedRoutingModule } from './protected-routing.module';
 
 import { HomeComponent } from './pages/home/home.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent, 
+    DashboardComponent,
     AboutComponent
   ],
   imports: [
