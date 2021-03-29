@@ -1,0 +1,16 @@
+.card_about {
+  width: 90%;
+}
+
+.about-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.text_about {
+  margin: 0;
+}
+
+.content {
+  font-size: 16px;
+}
