@@ -82,10 +82,16 @@
         class="button_social_media"
         mat-button
         *ngFor="let icon of listIcons"
+        style="display: flex"
       >
         <div fxLayout="row" fxLayoutAlign="space-around center">
-          <img [src]="icon.src" [alt]="icon.alt" width="25" />
-          Continuar con {{ icon.name }}
+          <img
+            class="image_social_media"
+            [src]="icon.src"
+            [alt]="icon.alt"
+            width="25"
+          />
+          <span class="text_social_media">Continuar con {{ icon.name }}</span>
         </div>
       </button>
     </div>

@@ -47,6 +47,11 @@
   padding: 3px 22px;
 }
 
+.image_social_media,
+.text_social_media {
+  margin-left: 50px;
+}
+
 .container {
   margin-top: 150px;
 }
