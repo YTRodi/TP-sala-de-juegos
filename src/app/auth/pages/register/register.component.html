@@ -1,1 +1,103 @@
-<p>register works!</p>
+<mat-sidenav-container fullscreen>
+  <mat-toolbar>
+    <img class="logo" src="../../../../favicon.ico" alt="Favicon" />
+
+    <span class="spacer"></span>
+
+    <button
+      class="register"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/auth/login']"
+    >
+      Iniciar sesión
+    </button>
+  </mat-toolbar>
+
+  <div
+    class="container"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayout.md="column"
+    fxLayout.lg="column"
+    fxLayoutAlign="center space-evenly"
+  >
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      <form
+        class="form-register"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <h1>Regístrate</h1>
+        <mat-form-field appearance="fill">
+          <mat-label class="label_email">Ingresa tu email</mat-label>
+          <input
+            formControlName="email"
+            class="input_email"
+            matInput
+            placeholder="example@example.com"
+            autocomplete="off"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{
+            getErrorMessageEmail()
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label class="label_password">Ingresa tu password</mat-label>
+          <input
+            formControlName="passwordOne"
+            class="input_password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+          <mat-error *ngIf="passwordOne.invalid">{{
+            getErrorMessagePassword()
+          }}</mat-error>
+
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label class="label_password">Reingresa tu password</mat-label>
+          <input
+            formControlName="passwordTwo"
+            class="input_password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button
+          [disabled]="!registerForm.valid"
+          class="button_submit"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Regístrate
+        </button>
+      </form>
+    </div>
+  </div>
+</mat-sidenav-container>
