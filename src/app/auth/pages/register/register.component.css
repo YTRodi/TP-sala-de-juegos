@@ -1,0 +1,36 @@
+/* Toolbar */
+.logo {
+  width: 40px;
+}
+
+.register {
+  font-size: 18px;
+}
+
+/* Form */
+.container-form {
+  margin: 25px;
+}
+
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  width: 350px;
+}
+
+.input_email,
+.input_password,
+.label_email,
+.label_password {
+  font-size: 16px;
+}
+
+.button_submit {
+  padding: 3px;
+}
+
+.container {
+  margin-top: 150px;
+}
