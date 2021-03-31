@@ -51,7 +51,7 @@
             formControlName="password"
             class="input_password"
             matInput
-            [type]="hide ? 'password' : 'text'"
+            [type]="hidePassword ? 'password' : 'text'"
             required
           />
           <mat-error *ngIf="password.errors"
@@ -62,9 +62,11 @@
             type="button"
             mat-icon-button
             matSuffix
-            (click)="hide = !hide"
+            (click)="hidePassword = !hidePassword"
           >
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </button>
         </mat-form-field>
 
@@ -74,7 +76,7 @@
             formControlName="confirmPassword"
             class="input_password"
             matInput
-            [type]="hide ? 'password' : 'text'"
+            [type]="hideConfirmPassword ? 'password' : 'text'"
             required
           />
 
@@ -86,9 +88,11 @@
             type="button"
             mat-icon-button
             matSuffix
-            (click)="hide = !hide"
+            (click)="hideConfirmPassword = !hideConfirmPassword"
           >
-            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            <mat-icon>{{
+              hideConfirmPassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
           </button>
         </mat-form-field>
 
