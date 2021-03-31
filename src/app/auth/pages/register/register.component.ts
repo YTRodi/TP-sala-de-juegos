@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public hide = true;
+  public hidePassword = true;
+  public hideConfirmPassword = true;
   public minLengthPassword = 6;
 
   public email = new FormControl('', [Validators.required, Validators.email]);
@@ -29,7 +31,7 @@ export class RegisterComponent implements OnInit {
     passwords: this.passwords
   });
 
-  constructor(private angularFireAuthService: AuthService) { }
+  constructor(private angularFireAuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -85,8 +87,8 @@ export class RegisterComponent implements OnInit {
       const user = await this.angularFireAuthService.register(email, password);
 
       if(user) {
-        // Redirecciono al dashboard.
         console.log(user);
+        this.router.navigate(['/protected/dashboard']);
       }
     } catch (error) {
       // Este error puedo mostrarlo en un snackBar

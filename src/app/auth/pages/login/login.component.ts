@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Icon } from '../../../protected/pages/about/interfaces/icon';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     { src: '../../../../assets/icons/social media/facebook.svg', alt: 'Facebook icon', name: 'Facebook' }
   ];
 
-  constructor(private angularFireAuthService: AuthService) { }
+  constructor(private angularFireAuthService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -43,8 +44,8 @@ export class LoginComponent implements OnInit {
       const user = await this.angularFireAuthService.login(email, password);
 
       if(user) {
-        // Redirecciono al dashboard.
         console.log(user);
+        this.router.navigate(['/protected/dashboard']);
       }
     } catch (error) {
       // Este error puedo mostrarlo en un snackBar
