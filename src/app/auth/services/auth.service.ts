@@ -11,7 +11,7 @@ export class AuthService {
 
       return user;
     } catch (error) {
-      console.log(error);
+      throw new Error(error.message);
     }
   }
 
@@ -21,7 +21,7 @@ export class AuthService {
 
       return user;
     } catch (error) {
-      console.log(error);
+      throw new Error(error.message);
     }
   }
 }
