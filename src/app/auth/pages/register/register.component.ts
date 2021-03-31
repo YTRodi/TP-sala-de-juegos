@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthService]
 })
 export class RegisterComponent implements OnInit {
 
   public hide = true;
   public minLengthPassword = 6;
 
-  public email = new FormControl('prueba@gmail.com', [Validators.required, Validators.email]);
+  public email = new FormControl('', [Validators.required, Validators.email]);
 
-  public password = new FormControl('123456', [Validators.required, Validators.minLength(this.minLengthPassword)]);
-  public confirmPassword = new FormControl('123456', [Validators.required, Validators.minLength(this.minLengthPassword)]);
+  public password = new FormControl('', [Validators.required, Validators.minLength(this.minLengthPassword)]);
+  public confirmPassword = new FormControl('', [Validators.required, Validators.minLength(this.minLengthPassword)]);
 
   public passwords = new FormGroup({
     password: this.password,
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
     passwords: this.passwords
   });
 
-  constructor() { }
+  constructor(private angularFireAuthService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -72,13 +73,25 @@ export class RegisterComponent implements OnInit {
     return (!this.password.hasError('minLength') || !this.confirmPassword.hasError('minLength')) ? 'Debe de contener 6 carácteres como mínimo' : '';
   }
 
-  onSubmit() {
+  async onRegister() {
     if ( this.passwords.controls?.password.value !== this.passwords.controls?.confirmPassword.value ) {
+      // Activar flag para mostrar el error en un snackbar o mat-error.
       console.log('Se cancela el submit, los passwords no son iguales.')
       return ;
     }
+    
+    try {
+      const { email, passwords: { password } } = this.registerForm.value;
+      const user = await this.angularFireAuthService.register(email, password);
 
-    console.log('Podes pasar.');
+      if(user) {
+        // Redirecciono al dashboard.
+        console.log(user);
+      }
+    } catch (error) {
+      // Este error puedo mostrarlo en un snackBar
+      console.log(error.message);
+    }
   }
 
 }
