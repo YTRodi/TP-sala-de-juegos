@@ -1,1 +1,98 @@
-<p>login works!</p>
+<mat-sidenav-container fullscreen>
+  <mat-toolbar>
+    <img class="logo" src="../../../../favicon.ico" alt="Favicon" />
+
+    <span class="spacer"></span>
+
+    <button
+      class="register"
+      mat-raised-button
+      color="primary"
+      [routerLink]="['/auth/register']"
+    >
+      Crear cuenta
+    </button>
+  </mat-toolbar>
+
+  <div
+    class="container"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayout.md="column"
+    fxLayout.lg="column"
+    fxLayoutAlign="center space-evenly"
+  >
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="20">
+      <form
+        class="form-login"
+        [formGroup]="loginForm"
+        (ngSubmit)="onLoginEmailPassword()"
+      >
+        <h1>Iniciar sesión</h1>
+        <mat-form-field appearance="fill">
+          <mat-label class="label_email">Ingresa tu email</mat-label>
+          <input
+            formControlName="email"
+            class="input_email"
+            matInput
+            placeholder="example@example.com"
+            autocomplete="off"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label class="label_password">Ingresa tu password</mat-label>
+          <input
+            formControlName="password"
+            class="input_password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            required
+          />
+
+          <button
+            type="button"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button
+          [disabled]="!loginForm.valid"
+          class="button_submit"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+
+    <div
+      class="container_social_media"
+      fxLayout="column"
+      fxLayoutAlign="space-around center"
+      fxLayoutGap="10px"
+      fxFlex="20"
+    >
+      <button
+        class="button_social_media"
+        mat-button
+        *ngFor="let icon of listIcons"
+        style="display: flex"
+      >
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+          <img class="image_social_media" [src]="icon.src" [alt]="icon.alt" />
+          <span class="text_social_media">Continuar con {{ icon.name }}</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</mat-sidenav-container>

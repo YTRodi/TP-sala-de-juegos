@@ -1,0 +1,61 @@
+/* Toolbar */
+.logo {
+  width: 40px;
+}
+
+.register {
+  font-size: 18px;
+}
+
+/* Form */
+.container-form {
+  margin: 25px;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  width: 350px;
+}
+
+.input_email,
+.input_password,
+.label_email,
+.label_password {
+  font-size: 16px;
+}
+
+.button_submit {
+  padding: 3px;
+}
+
+/* Social media */
+.container_social_media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: -6px;
+}
+
+.button_social_media {
+  border: 1px solid #fff;
+  width: 350px;
+  /* padding: 10px; */
+  padding: 3px 22px;
+}
+
+.image_social_media {
+  width: 25px;
+}
+
+.image_social_media,
+.text_social_media {
+  margin-left: 50px;
+}
+
+.container {
+  margin-top: 150px;
+}
