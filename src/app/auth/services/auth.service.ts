@@ -5,25 +5,23 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AuthService {
   constructor(private afAuth: AngularFireAuth) { }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string): Promise<any> {
     try {
-      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
 
-      return result;
+      return user;
     } catch (error) {
-      console.log(error.message)
-      return null;
+      console.log(error);
     }
   }
 
-  async register(email: string, password: string) {
+  async register(email: string, password: string): Promise<any> {
     try {
-      const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
 
-      return result;
+      return user;
     } catch (error) {
-      console.log(error.message)
-      return null;
+      console.log(error);
     }
   }
 }
