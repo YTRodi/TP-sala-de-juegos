@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { LogUserService } from '../../services/log-user.service';
+import { UserLogI } from '../interfaces/userLog';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, LogUserService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -31,7 +33,9 @@ export class RegisterComponent implements OnInit {
     passwords: this.passwords
   });
 
-  constructor(private angularFireAuthService: AuthService, private router: Router) { }
+  constructor(private angularFireAuthService: AuthService,
+              private router: Router,
+              private logUserService: LogUserService) { }
 
   ngOnInit(): void {
   }
@@ -85,9 +89,10 @@ export class RegisterComponent implements OnInit {
     try {
       const { email, passwords: { password } } = this.registerForm.value;
       const user = await this.angularFireAuthService.register(email, password);
+      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() }
 
       if(user) {
-        console.log(user);
+        this.logUserService.saveUserLog(objUserForLog);
         this.router.navigate(['/protected/dashboard']);
       }
     } catch (error) {
