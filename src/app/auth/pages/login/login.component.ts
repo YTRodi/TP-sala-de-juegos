@@ -10,7 +10,6 @@ import { UserLogI } from '../interfaces/userLog';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService, LogUserService]
 })
 export class LoginComponent implements OnInit {
   public lista: any;
@@ -24,14 +23,28 @@ export class LoginComponent implements OnInit {
   });
 
   public listIcons: Icon[] = [
-    { src: '../../../../assets/icons/social media/google.svg', alt: 'Google icon', name: 'Google' },
-    { src: '../../../../assets/icons/social media/github.svg', alt: 'Github icon', name: 'Github' },
-    { src: '../../../../assets/icons/social media/facebook.svg', alt: 'Facebook icon', name: 'Facebook' }
+    {
+      src: '../../../../assets/icons/social media/google.svg',
+      alt: 'Google icon',
+      name: 'Google',
+    },
+    {
+      src: '../../../../assets/icons/social media/github.svg',
+      alt: 'Github icon',
+      name: 'Github',
+    },
+    {
+      src: '../../../../assets/icons/social media/facebook.svg',
+      alt: 'Facebook icon',
+      name: 'Facebook',
+    },
   ];
 
-  constructor(private angularFireAuthService: AuthService,
-              private router: Router,
-              private logUserService: LogUserService) { }
+  constructor(
+    private angularFireAuthService: AuthService,
+    private router: Router,
+    private logUserService: LogUserService
+  ) {}
 
   ngOnInit(): void {
     this.logUserService.getAllUsersLogs().subscribe(console.log);
@@ -47,9 +60,9 @@ export class LoginComponent implements OnInit {
     try {
       const { email, password } = this.loginForm.value;
       const user = await this.angularFireAuthService.login(email, password);
-      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() }
+      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() };
 
-      if(user) {
+      if (user) {
         this.logUserService.saveUserLog(objUserForLog);
         this.router.navigate(['/protected/dashboard']);
       }
@@ -58,5 +71,4 @@ export class LoginComponent implements OnInit {
       console.log(error.message);
     }
   }
-
 }

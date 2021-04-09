@@ -6,15 +6,14 @@ import { AuthService } from '../../../auth/services/auth.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [AuthService]
 })
 export class HomeComponent implements OnInit {
+  constructor(
+    private angularFireAuthService: AuthService,
+    private router: Router
+  ) {}
 
-  constructor(private angularFireAuthService: AuthService,
-              private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onLogout() {
     try {
