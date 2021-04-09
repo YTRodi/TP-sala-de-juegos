@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.logUserService.getAllUsersLogs().subscribe(console.log);
+    // this.logUserService.getAllUsersLogs().subscribe(console.log);
   }
 
   getErrorMessage(): string {
