@@ -15,8 +15,11 @@ export class LoginComponent implements OnInit {
   public lista: any;
   public hide = true;
 
-  public email = new FormControl('', [Validators.required, Validators.email]);
-  public password = new FormControl('');
+  public email = new FormControl('prueba@gmail.com', [
+    Validators.required,
+    Validators.email,
+  ]);
+  public password = new FormControl('123456');
   public loginForm = new FormGroup({
     email: this.email,
     password: this.password,
@@ -51,12 +54,14 @@ export class LoginComponent implements OnInit {
   }
 
   getErrorMessage(): string {
-    if (this.email.hasError('required')) return 'Debes ingresar un valor';
+    if (this.email.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
 
     return this.email.hasError('email') ? 'Email no válido' : '';
   }
 
-  async onLoginEmailPassword() {
+  async onLoginEmailPassword(): Promise<void> {
     try {
       const { email, password } = this.loginForm.value;
       const user = await this.angularFireAuthService.login(email, password);

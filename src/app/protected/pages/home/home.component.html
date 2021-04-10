@@ -12,6 +12,20 @@
     </mat-toolbar>
 
     <mat-nav-list>
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+      <!-- //TODO: HACER ESTO DINÁMICO POR FAVOR!!!!!!!!!!!!!!!! -->
+
+      <a mat-list-item>
+        <span>{{ user?.displayName }}</span>
+      </a>
+
+      <mat-divider></mat-divider>
+
       <a
         [routerLink]="['/protected/dashboard']"
         mat-list-item
@@ -47,6 +61,15 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <div class="detailsUser">
+      <img
+        *ngIf="user?.photoURL"
+        class="userImage"
+        [src]="user?.photoURL"
+        alt="User image"
+      />
+    </div>
 
     <span class="spacer"></span>
 

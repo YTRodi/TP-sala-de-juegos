@@ -84,7 +84,9 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessageEmail(): string {
-    if (this.email.hasError('required')) return 'Debes ingresar un valor';
+    if (this.email.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
 
     return this.email.hasError('email') ? 'Email no válido' : '';
   }
@@ -93,8 +95,9 @@ export class RegisterComponent implements OnInit {
     if (
       this.password.hasError('required') ||
       this.confirmPassword.hasError('required')
-    )
+    ) {
       return 'Debes ingresar un valor';
+    }
 
     return !this.password.hasError('minLength') ||
       !this.confirmPassword.hasError('minLength')
@@ -102,7 +105,7 @@ export class RegisterComponent implements OnInit {
       : '';
   }
 
-  async onRegister() {
+  async onRegister(): Promise<void> {
     if (
       this.passwords.controls?.password.value !==
       this.passwords.controls?.confirmPassword.value
