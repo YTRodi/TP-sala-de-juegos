@@ -29,6 +29,9 @@ export class AuthService {
         password
       );
 
+      // TODO: Cambiarle el nombre a las funciones. Tendrían que llamarse loginEmailAndPassword, registerEmailAndPassword y
+      //en los componentes login y registro deberian llamarse igual.
+
       // TODO: en el login/registro con google, facebook, github no ahce falta este paso porque estás dos props ya vienen seteadas.
 
       user?.updateProfile({
