@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { UserI } from '../../../auth/pages/interfaces/user';
+import { NavI } from './interfaces/nav';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +12,25 @@ import { UserI } from '../../../auth/pages/interfaces/user';
 export class HomeComponent implements OnInit {
   user!: UserI;
 
+  public routesSideNav: NavI[] = [
+    { to: '/protected/dashboard', icon: 'dashboard', routeName: 'Dashboard' },
+    { to: '/protected/dashboard', icon: 'games', routeName: 'Games' },
+    { to: '/protected/about', icon: 'portrait', routeName: 'About' },
+  ];
+
   constructor(
     private angularFireAuthService: AuthService,
     private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.user = await this.angularFireAuthService.getCurrentUser();
-
-    // Puedo poner un flag de que está logeado y habilitar/deshabilitar algunas operaciones.
-    // if (this.user) { console.log(this.user); }
+    try {
+      this.user = await this.angularFireAuthService.getCurrentUser();
+      console.log(this.user);
+    } catch (error) {
+      // Este error puedo mostrarlo en un snackBar
+      console.log(error.message);
+    }
   }
 
   async onLogout(): Promise<void> {
