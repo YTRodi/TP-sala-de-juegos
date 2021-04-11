@@ -10,46 +10,67 @@ import { UserLogI } from '../interfaces/userLog';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService, LogUserService]
 })
 export class LoginComponent implements OnInit {
   public lista: any;
   public hide = true;
 
-  public email = new FormControl('', [Validators.required, Validators.email]);
-  public password = new FormControl('');
+  public email = new FormControl('prueba@gmail.com', [
+    Validators.required,
+    Validators.email,
+  ]);
+  public password = new FormControl('123456');
   public loginForm = new FormGroup({
     email: this.email,
     password: this.password,
   });
 
   public listIcons: Icon[] = [
-    { src: '../../../../assets/icons/social media/google.svg', alt: 'Google icon', name: 'Google' },
-    { src: '../../../../assets/icons/social media/github.svg', alt: 'Github icon', name: 'Github' },
-    { src: '../../../../assets/icons/social media/facebook.svg', alt: 'Facebook icon', name: 'Facebook' }
+    {
+      src: '../../../../assets/icons/social media/google.svg',
+      alt: 'Google icon',
+      name: 'Google',
+    },
+    {
+      src: '../../../../assets/icons/social media/github.svg',
+      alt: 'Github icon',
+      name: 'Github',
+    },
+    {
+      src: '../../../../assets/icons/social media/facebook.svg',
+      alt: 'Facebook icon',
+      name: 'Facebook',
+    },
   ];
 
-  constructor(private angularFireAuthService: AuthService,
-              private router: Router,
-              private logUserService: LogUserService) { }
+  constructor(
+    private angularFireAuthService: AuthService,
+    private router: Router,
+    private logUserService: LogUserService
+  ) {}
 
   ngOnInit(): void {
-    this.logUserService.getAllUsersLogs().subscribe(console.log);
+    // this.logUserService.getAllUsersLogs().subscribe(console.log);
   }
 
   getErrorMessage(): string {
-    if (this.email.hasError('required')) return 'Debes ingresar un valor';
+    if (this.email.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
 
     return this.email.hasError('email') ? 'Email no válido' : '';
   }
 
-  async onLoginEmailPassword() {
+  async onLoginEmailPassword(): Promise<void> {
     try {
       const { email, password } = this.loginForm.value;
-      const user = await this.angularFireAuthService.login(email, password);
-      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() }
+      const user = await this.angularFireAuthService.loginWithEmailAndPassword(
+        email,
+        password
+      );
+      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() };
 
-      if(user) {
+      if (user) {
         this.logUserService.saveUserLog(objUserForLog);
         this.router.navigate(['/protected/dashboard']);
       }
@@ -58,5 +79,4 @@ export class LoginComponent implements OnInit {
       console.log(error.message);
     }
   }
-
 }

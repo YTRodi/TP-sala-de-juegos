@@ -4,4 +4,17 @@
 
 .container {
   margin: 25px;
+  border: 1px solid white;
+}
+
+.detailsUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.userImage {
+  width: 30px;
+  border-radius: 100%;
 }
