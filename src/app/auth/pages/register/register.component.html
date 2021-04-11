@@ -31,6 +31,23 @@
       >
         <h1>Regístrate</h1>
         <mat-form-field appearance="fill">
+          <mat-label class="input_username"
+            >Ingresa tu nombre de usuario</mat-label
+          >
+          <input
+            formControlName="userName"
+            class="input_username"
+            matInput
+            placeholder="example@example.com"
+            autocomplete="off"
+            required
+          />
+          <mat-error *ngIf="userName.errors">{{
+            getErrorMessageUserName()
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
           <mat-label class="label_email">Ingresa tu email</mat-label>
           <input
             formControlName="email"

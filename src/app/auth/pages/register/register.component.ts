@@ -19,15 +19,23 @@ import { UserLogI } from '../interfaces/userLog';
 export class RegisterComponent implements OnInit {
   public hidePassword = true;
   public hideConfirmPassword = true;
+  public minLengthUserName = 3;
   public minLengthPassword = 6;
 
-  public email = new FormControl('', [Validators.required, Validators.email]);
+  public userName = new FormControl('spiderman', [
+    Validators.required,
+    Validators.minLength(this.minLengthUserName),
+  ]);
+  public email = new FormControl('spidey@gmail.com', [
+    Validators.required,
+    Validators.email,
+  ]);
 
-  public password = new FormControl('', [
+  public password = new FormControl('123456', [
     Validators.required,
     Validators.minLength(this.minLengthPassword),
   ]);
-  public confirmPassword = new FormControl('', [
+  public confirmPassword = new FormControl('123456', [
     Validators.required,
     Validators.minLength(this.minLengthPassword),
   ]);
@@ -39,6 +47,7 @@ export class RegisterComponent implements OnInit {
   // }, { validators: this.matchValidator('password', 'confirmPassword') }); //! FASE DE PRUEBAS!!!!
 
   public registerForm = new FormGroup({
+    userName: this.userName,
     email: this.email,
     passwords: this.passwords,
   });
@@ -83,6 +92,16 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+  getErrorMessageUserName(): string {
+    if (this.userName.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+
+    return !this.userName.hasError('minLength')
+      ? 'Debe de contener 3 carácteres como mínimo'
+      : '';
+  }
+
   getErrorMessageEmail(): string {
     if (this.email.hasError('required')) {
       return 'Debes ingresar un valor';
@@ -117,10 +136,15 @@ export class RegisterComponent implements OnInit {
 
     try {
       const {
+        userName,
         email,
         passwords: { password },
       } = this.registerForm.value;
-      const user = await this.angularFireAuthService.register(email, password);
+      const user = await this.angularFireAuthService.registerWithEmailAndPassword(
+        userName,
+        email,
+        password
+      );
       const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() };
 
       if (user) {
