@@ -95,4 +95,39 @@
       </button>
     </div>
   </div>
+
+  <!-- Carga rápido de usuario -->
+  <div
+    class="container"
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayout.sm="column"
+    fxLayout.md="column"
+    fxLayout.lg="column"
+    fxLayoutAlign="center space-evenly"
+  >
+    <div
+      class="container_social_media"
+      fxLayout="column"
+      fxLayoutAlign="space-around center"
+      fxLayoutGap="10px"
+      fxFlex="20"
+    >
+      <button
+        class="button_social_media"
+        mat-button
+        style="display: flex"
+        (click)="cargaRapida()"
+      >
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <img
+            class="image_social_media"
+            src="../../../../assets/icons/bolt.svg"
+            alt="bolt icon"
+          />
+          <span class="text_social_media">Carga rápida</span>
+        </div>
+      </button>
+    </div>
+  </div>
 </mat-sidenav-container>

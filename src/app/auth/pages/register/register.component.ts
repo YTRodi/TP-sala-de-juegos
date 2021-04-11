@@ -23,20 +23,17 @@ export class RegisterComponent implements OnInit {
   public minLengthUserName = 3;
   public minLengthPassword = 6;
 
-  public userName = new FormControl('spiderman', [
+  public userName = new FormControl('', [
     Validators.required,
     Validators.minLength(this.minLengthUserName),
   ]);
-  public email = new FormControl('spidey@gmail.com', [
-    Validators.required,
-    Validators.email,
-  ]);
+  public email = new FormControl('', [Validators.required, Validators.email]);
 
-  public password = new FormControl('123456', [
+  public password = new FormControl('', [
     Validators.required,
     Validators.minLength(this.minLengthPassword),
   ]);
-  public confirmPassword = new FormControl('123456', [
+  public confirmPassword = new FormControl('', [
     Validators.required,
     Validators.minLength(this.minLengthPassword),
   ]);

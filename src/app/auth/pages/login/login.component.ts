@@ -16,11 +16,8 @@ export class LoginComponent implements OnInit {
   public lista: any;
   public hide = true;
 
-  public email = new FormControl('prueba@gmail.com', [
-    Validators.required,
-    Validators.email,
-  ]);
-  public password = new FormControl('123456');
+  public email = new FormControl('', [Validators.required, Validators.email]);
+  public password = new FormControl('');
   public loginForm = new FormGroup({
     email: this.email,
     password: this.password,
@@ -61,6 +58,11 @@ export class LoginComponent implements OnInit {
     }
 
     return this.email.hasError('email') ? 'Email no válido' : '';
+  }
+
+  cargaRapida(): void {
+    this.email.setValue('test@gmail.com');
+    this.password.setValue('123456');
   }
 
   async onLoginEmailPassword(): Promise<void> {
