@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { LogUserService } from '../../services/log-user.service';
 import { UserLogI } from '../interfaces/userLog';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -55,7 +56,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private angularFireAuthService: AuthService,
     private router: Router,
-    private logUserService: LogUserService
+    private logUserService: LogUserService,
+    private notification: NotificationService
   ) {}
 
   ngOnInit(): void {}
@@ -152,8 +154,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/protected/dashboard']);
       }
     } catch (error) {
-      // Este error puedo mostrarlo en un snackBar
-      console.log(error.message);
+      this.notification.openSnackBar(error.message, 'Cerrar');
     }
   }
 }
