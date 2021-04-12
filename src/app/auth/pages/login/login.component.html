@@ -37,7 +37,6 @@
             class="input_email"
             matInput
             placeholder="example@example.com"
-            autocomplete="off"
             required
           />
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
@@ -51,6 +50,7 @@
             matInput
             [type]="hide ? 'password' : 'text'"
             required
+            autocomplete="on"
           />
 
           <button
@@ -87,6 +87,7 @@
         mat-button
         *ngFor="let icon of listIcons"
         style="display: flex"
+        (click)="icon.onClickFn()"
       >
         <div fxLayout="row" fxLayoutAlign="space-around center">
           <img class="image_social_media" [src]="icon.src" [alt]="icon.alt" />
