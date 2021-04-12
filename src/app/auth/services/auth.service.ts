@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 import { first } from 'rxjs/operators';
 
 @Injectable({
@@ -41,6 +42,33 @@ export class AuthService {
       });
 
       return user;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async loginWithGoogle(): Promise<firebase.auth.UserCredential> {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      return await this.afAuth.signInWithPopup(provider);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async loginWithGithub(): Promise<firebase.auth.UserCredential> {
+    try {
+      const provider = new firebase.auth.GithubAuthProvider();
+      return await this.afAuth.signInWithPopup(provider);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async loginWithFacebook(): Promise<firebase.auth.UserCredential> {
+    try {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      return await this.afAuth.signInWithPopup(provider);
     } catch (error) {
       throw new Error(error.message);
     }

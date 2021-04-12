@@ -28,16 +28,19 @@ export class LoginComponent implements OnInit {
       src: '../../../../assets/icons/social media/google.svg',
       alt: 'Google icon',
       name: 'Google',
+      onClickFn: async () => await this.onLoginGoogle(),
     },
     {
       src: '../../../../assets/icons/social media/github.svg',
       alt: 'Github icon',
       name: 'Github',
+      onClickFn: async () => await this.onLoginGithub(),
     },
     {
       src: '../../../../assets/icons/social media/facebook.svg',
       alt: 'Facebook icon',
       name: 'Facebook',
+      onClickFn: async () => await this.onLoginFacebook(),
     },
   ];
 
@@ -46,7 +49,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private logUserService: LogUserService,
     private notification: NotificationService
-  ) {}
+  ) {
+    // this.listIcons[0].onClickFn();
+  }
 
   ngOnInit(): void {
     // this.logUserService.getAllUsersLogs().subscribe(console.log);
@@ -78,6 +83,33 @@ export class LoginComponent implements OnInit {
         this.logUserService.saveUserLog(objUserForLog);
         this.router.navigate(['/protected/dashboard']);
       }
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
+
+  async onLoginGoogle(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithGoogle();
+      this.router.navigate(['/protected/dashboard']);
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
+
+  async onLoginGithub(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithGithub();
+      this.router.navigate(['/protected/dashboard']);
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
+
+  async onLoginFacebook(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithFacebook();
+      this.router.navigate(['/protected/dashboard']);
     } catch (error) {
       this.notification.openSnackBar(error.message, 'Cerrar');
     }
