@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     { to: '/protected/dashboard', icon: 'dashboard', routeName: 'Dashboard' },
     { to: '/protected/dashboard', icon: 'games', routeName: 'Games' },
     { to: '/protected/about', icon: 'portrait', routeName: 'About' },
+    { to: '/protected/chat', icon: 'chat', routeName: 'Chat' },
   ];
 
   constructor(
@@ -26,7 +27,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.user = await this.angularFireAuthService.getCurrentUser();
-      console.log(this.user);
+      // console.log(this.user);
     } catch (error) {
       // Este error puedo mostrarlo en un snackBar
       console.log(error.message);

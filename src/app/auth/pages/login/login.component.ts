@@ -49,12 +49,10 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private logUserService: LogUserService,
     private notification: NotificationService
-  ) {
-    // this.listIcons[0].onClickFn();
-  }
+  ) {}
 
   ngOnInit(): void {
-    // this.logUserService.getAllUsersLogs().subscribe(console.log);
+    // this.logUserService.getAllUsersLogs().subscribe(console.table);
   }
 
   getErrorMessage(): string {
