@@ -12,33 +12,21 @@
     </mat-toolbar>
 
     <mat-nav-list>
-      <a
-        [routerLink]="['/protected/dashboard']"
-        mat-list-item
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon mat-list-icon>dashboard</mat-icon>
-        <span>Dashboard</span>
-      </a>
-
-      <a
-        [routerLink]="['/protected/dashboard']"
-        mat-list-item
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon mat-list-icon>games</mat-icon>
-        <span>Games</span>
+      <a mat-list-item>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <span>{{ user?.displayName }}</span>
       </a>
 
       <mat-divider></mat-divider>
 
       <a
-        [routerLink]="['/protected/about']"
+        *ngFor="let route of routesSideNav"
+        [routerLink]="[route.to]"
         mat-list-item
         (click)="sidenav.toggle()"
       >
-        <mat-icon mat-list-icon>portrait</mat-icon>
-        <span>About</span>
+        <mat-icon mat-list-icon>{{ route.icon }}</mat-icon>
+        <span>{{ route.routeName }}</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -47,6 +35,10 @@
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <div class="detailsUser" *ngIf="user?.photoURL">
+      <img class="userImage" [src]="user?.photoURL" alt="User image" />
+    </div>
 
     <span class="spacer"></span>
 

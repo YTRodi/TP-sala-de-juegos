@@ -13,9 +13,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
-  exports: [ // Lo exporto para ofrecerselo a otro módulo que use angular material.
+  exports: [
+    // Lo exporto para ofrecerselo a otro módulo que use angular material.
     MatButtonModule,
     MatDividerModule,
     MatListModule,
@@ -26,7 +28,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+    ScrollingModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

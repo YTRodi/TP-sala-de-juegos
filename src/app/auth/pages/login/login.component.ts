@@ -5,12 +5,12 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { LogUserService } from '../../services/log-user.service';
 import { UserLogI } from '../interfaces/userLog';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService, LogUserService]
 })
 export class LoginComponent implements OnInit {
   public lista: any;
@@ -24,39 +24,92 @@ export class LoginComponent implements OnInit {
   });
 
   public listIcons: Icon[] = [
-    { src: '../../../../assets/icons/social media/google.svg', alt: 'Google icon', name: 'Google' },
-    { src: '../../../../assets/icons/social media/github.svg', alt: 'Github icon', name: 'Github' },
-    { src: '../../../../assets/icons/social media/facebook.svg', alt: 'Facebook icon', name: 'Facebook' }
+    {
+      src: '../../../../assets/icons/social media/google.svg',
+      alt: 'Google icon',
+      name: 'Google',
+      onClickFn: async () => await this.onLoginGoogle(),
+    },
+    {
+      src: '../../../../assets/icons/social media/github.svg',
+      alt: 'Github icon',
+      name: 'Github',
+      onClickFn: async () => await this.onLoginGithub(),
+    },
+    {
+      src: '../../../../assets/icons/social media/facebook.svg',
+      alt: 'Facebook icon',
+      name: 'Facebook',
+      onClickFn: async () => await this.onLoginFacebook(),
+    },
   ];
 
-  constructor(private angularFireAuthService: AuthService,
-              private router: Router,
-              private logUserService: LogUserService) { }
+  constructor(
+    private angularFireAuthService: AuthService,
+    private router: Router,
+    private logUserService: LogUserService,
+    private notification: NotificationService
+  ) {}
 
   ngOnInit(): void {
-    this.logUserService.getAllUsersLogs().subscribe(console.log);
+    // this.logUserService.getAllUsersLogs().subscribe(console.table);
   }
 
   getErrorMessage(): string {
-    if (this.email.hasError('required')) return 'Debes ingresar un valor';
+    if (this.email.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
 
     return this.email.hasError('email') ? 'Email no válido' : '';
   }
 
-  async onLoginEmailPassword() {
+  cargaRapida(): void {
+    this.email.setValue('test@gmail.com');
+    this.password.setValue('123456');
+  }
+
+  async onLoginEmailPassword(): Promise<void> {
     try {
       const { email, password } = this.loginForm.value;
-      const user = await this.angularFireAuthService.login(email, password);
-      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() }
+      const user = await this.angularFireAuthService.loginWithEmailAndPassword(
+        email,
+        password
+      );
+      const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() };
 
-      if(user) {
+      if (user) {
         this.logUserService.saveUserLog(objUserForLog);
         this.router.navigate(['/protected/dashboard']);
       }
     } catch (error) {
-      // Este error puedo mostrarlo en un snackBar
-      console.log(error.message);
+      this.notification.openSnackBar(error.message, 'Cerrar');
     }
   }
 
+  async onLoginGoogle(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithGoogle();
+      this.router.navigate(['/protected/dashboard']);
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
+
+  async onLoginGithub(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithGithub();
+      this.router.navigate(['/protected/dashboard']);
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
+
+  async onLoginFacebook(): Promise<void> {
+    try {
+      await this.angularFireAuthService.loginWithFacebook();
+      this.router.navigate(['/protected/dashboard']);
+    } catch (error) {
+      this.notification.openSnackBar(error.message, 'Cerrar');
+    }
+  }
 }

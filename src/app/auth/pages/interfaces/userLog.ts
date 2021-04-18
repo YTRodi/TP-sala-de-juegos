@@ -1,4 +1,4 @@
 export interface UserLogI {
-  email: string,
-  loggedAt: number
+  email: string;
+  loggedAt: number;
 }

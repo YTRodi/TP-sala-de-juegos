@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -12,18 +13,14 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'about', component: AboutComponent },
-      { path: '**', redirectTo: 'dashboard' }
-    ]
-  }
-]
-
+      { path: 'chat', component: ChatComponent },
+      { path: '**', redirectTo: 'dashboard' },
+    ],
+  },
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class ProtectedRoutingModule { }
+export class ProtectedRoutingModule {}
