@@ -1,0 +1,30 @@
+<div
+  fxLayout="column "
+  fxLayout.xs="column"
+  fxLayout.sm="row wrap"
+  fxLayout.md="row wrap"
+  fxLayout.lg="row wrap"
+  fxLayoutAlign="space-evenly center"
+>
+  <mat-card
+    fxLayout="column"
+    fxLayoutAlign="space-evenly center"
+    class="game-card"
+    *ngFor="let card of listCards"
+    [routerLink]="[card.to]"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ card.title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      *ngIf="card.image"
+      mat-card-image
+      [src]="card.image"
+      [alt]="card.alt"
+    />
+
+    <mat-icon *ngIf="!card.image && card.icon" class="icon-card">
+      {{ card.icon }}
+    </mat-icon>
+  </mat-card>
+</div>

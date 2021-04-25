@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   public routesSideNav: NavI[] = [
     { to: '/protected/dashboard', icon: 'dashboard', routeName: 'Dashboard' },
-    { to: '/protected/dashboard', icon: 'games', routeName: 'Games' },
+    { to: '/protected/games', icon: 'games', routeName: 'Games' },
     { to: '/protected/about', icon: 'portrait', routeName: 'About' },
     { to: '/protected/chat', icon: 'chat', routeName: 'Chat' },
   ];
