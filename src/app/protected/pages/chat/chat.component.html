@@ -1,33 +1,35 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <cdk-virtual-scroll-viewport class="container-virtual-scroll" itemSize="70">
-    <div
-      id="elemento-prro"
-      class="container-users-chat"
-      *cdkVirtualFor="let chat of chatService.chats"
-    >
-      <div class="container-data-user">
-        <img class="image-chat-user" [src]="chat.image" alt="img profile" />
-        <span class="name-chat-user">
-          {{ chat.name }}
-        </span>
+<div fxLayout="column" fxLayoutAlign="space-between center">
+  <div class="container-chat">
+    <cdk-virtual-scroll-viewport class="chat-container" itemSize="50">
+      <div
+        fxLayout="column"
+        fxFlexAlign="center flex-start"
+        *cdkVirtualFor="let chat of chatService.chats"
+      >
+        <div fxLayout="row" fxFlexAlign="flex-end center">
+          <img class="image-chat-user" [src]="chat.image" alt="img profile" />
+          <span class="name-chat-user">
+            {{ chat.name }}
+          </span>
+        </div>
+        <p class="message-user">{{ chat.message }}</p>
       </div>
-      <p class="message-user">{{ chat.message }}</p>
-    </div>
-  </cdk-virtual-scroll-viewport>
+    </cdk-virtual-scroll-viewport>
 
-  <mat-form-field class="container-send-message" appearance="fill">
-    <mat-label>Escribe un mensaje...</mat-label>
-    <input
-      matInput
-      type="text"
-      name="message"
-      [(ngModel)]="message"
-      (keyup.enter)="sendMessage()"
-      placeholder="Aa"
-    />
+    <mat-form-field class="container-send-message" appearance="fill">
+      <mat-label>Escribe un mensaje...</mat-label>
+      <input
+        matInput
+        type="text"
+        name="message"
+        [(ngModel)]="message"
+        (keyup.enter)="sendMessage()"
+        placeholder="Aa"
+      />
 
-    <button mat-button matSuffix mat-icon-button (click)="sendMessage()">
-      <mat-icon>send</mat-icon>
-    </button>
-  </mat-form-field>
+      <button mat-button matSuffix mat-icon-button (click)="sendMessage()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
 </div>
