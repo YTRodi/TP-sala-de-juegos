@@ -7,5 +7,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "tp-sala-de-juegos-9e127"
   }
 }

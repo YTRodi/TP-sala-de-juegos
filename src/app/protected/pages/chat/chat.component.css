@@ -1,11 +1,18 @@
-.container-data-user {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.chat-container {
+  height: 60vh;
+  width: 60vw;
+  min-width: 300px;
 }
 
-.name-chat-user {
-  font-weight: 500;
+.container-chat {
+  border: 2px solid #c2185b;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.container-send-message {
+  width: 60vw;
+  min-width: 300px;
 }
 
 .image-chat-user {
@@ -14,74 +21,10 @@
   margin-right: 10px;
 }
 
+.name-chat-user {
+  font-weight: 500;
+}
+
 .message-user {
   margin-top: 10px;
-  text-align: right;
-}
-
-@media screen and (min-width: 320px) {
-  .container-virtual-scroll {
-    height: 600px;
-    width: 265px;
-    max-width: 265px;
-  }
-
-  .container-users-chat {
-    width: 100%;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 10px;
-  }
-
-  .container-send-message {
-    width: 265px;
-  }
-}
-
-@media screen and (min-width: 375px) {
-  .container-virtual-scroll {
-    height: 600px;
-    width: 320px;
-    max-width: 320px;
-  }
-
-  .container-send-message {
-    width: 320px;
-  }
-}
-
-@media screen and (min-width: 425px) {
-  .container-virtual-scroll {
-    width: 370px;
-    max-width: 370px;
-  }
-
-  .container-send-message {
-    width: 370px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container-virtual-scroll {
-    width: 600px;
-    max-width: 600px;
-  }
-
-  .container-send-message {
-    width: 600px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .container-virtual-scroll {
-    width: 1200px;
-    max-width: 1200px;
-  }
-
-  .container-send-message {
-    width: 1200px;
-  }
 }
