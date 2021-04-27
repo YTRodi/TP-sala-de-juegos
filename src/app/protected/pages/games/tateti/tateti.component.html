@@ -1,1 +1,42 @@
-<p>tateti works!</p>
+<!-- TABLERO -->
+<div class="container">
+  <h1>Ta Te Ti</h1>
+
+  <div *ngIf="!currentPlayer">
+    <mat-radio-group class="radio-group" [(ngModel)]="currentPlayer">
+      <mat-radio-button
+        class="radio-button"
+        *ngFor="let typePlayer of typePlayers"
+        [value]="typePlayer"
+      >
+        {{ typePlayer }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div
+    *ngIf="currentPlayer"
+    class="game-container"
+    (click)="handleCellClick($event)"
+  >
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+    <div class="game-cell"></div>
+  </div>
+  <h2 *ngIf="currentPlayer" class="game-notification">
+    {{ STATUS_DISPLAY }}
+  </h2>
+  <button
+    *ngIf="currentPlayer"
+    class="game-restart"
+    (click)="handleRestartGame()"
+  >
+    Restablecer
+  </button>
+</div>
