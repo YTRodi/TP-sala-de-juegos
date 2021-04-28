@@ -61,7 +61,6 @@ export class TatetiComponent implements OnInit {
   }
 
   handleCellPlayed(clickedCell: HTMLElement, clickedCellIndex: number) {
-    console.log(clickedCell);
     this.GAME_STATE[clickedCellIndex] = this.currentPlayer;
     clickedCell.innerHTML = this.currentPlayer;
   }
