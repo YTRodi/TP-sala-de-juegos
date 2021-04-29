@@ -2,12 +2,20 @@
   <h1 class="game-title">Piedra, papel o tijeras</h1>
 
   <div id="result">
-    <img src="../../../../../assets/images/piedra.svg" #machineImg />
+    <img
+      class="game-img"
+      src="../../../../../assets/images/piedra.svg"
+      #machineImg
+    />
 
     <div>{{ !resultText ? "Elije una opción" : resultText }}</div>
     <div *ngIf="!resultText" class="arrow">↓</div>
 
-    <img src="../../../../../assets/images/piedra.svg" #userImg />
+    <img
+      class="game-img"
+      src="../../../../../assets/images/piedra.svg"
+      #userImg
+    />
   </div>
 
   <div id="group-btn">

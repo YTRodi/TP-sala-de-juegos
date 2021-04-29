@@ -1,7 +1,15 @@
 .btn-ppt {
-  border: 4px solid black;
+  background-color: #c2185b;
+  border: 4px solid #c2185b;
   margin: 5px;
   border-radius: 50%;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.btn-ppt:hover {
+  border: 4px solid black;
+  background-color: #fff;
 }
 
 .container {
@@ -30,7 +38,7 @@
   font-size: 20px;
 }
 
-#result img {
+#result .game-img {
   width: 40%;
 }
 
