@@ -87,7 +87,7 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
           break;
 
         case WIN:
-          this.resultText = 'Tu ganas! 🥳';
+          this.resultText = 'Tu ganas! 😁';
           break;
 
         case LOST:
