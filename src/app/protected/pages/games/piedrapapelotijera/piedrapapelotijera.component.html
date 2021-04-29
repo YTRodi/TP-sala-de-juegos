@@ -1,1 +1,24 @@
-<p>piedrapapelotijera works!</p>
+<div class="container">
+  <h1 class="game-title">Piedra, papel o tijeras</h1>
+
+  <div id="result">
+    <img src="../../../../../assets/images/piedra.svg" #machineImg />
+
+    <div>{{ !resultText ? "Elije una opción" : resultText }}</div>
+    <div *ngIf="!resultText" class="arrow">↓</div>
+
+    <img src="../../../../../assets/images/piedra.svg" #userImg />
+  </div>
+
+  <div id="group-btn">
+    <button class="btn-ppt" type="button" (click)="handleRockButton()">
+      <img class="img-ppt" src="../../../../../assets/images/piedra.svg" />
+    </button>
+    <button class="btn-ppt" type="button" (click)="handlePaperButton()">
+      <img class="img-ppt" src="../../../../../assets/images/papel.svg" />
+    </button>
+    <button class="btn-ppt" type="button" (click)="handleScissorsButton()">
+      <img class="img-ppt" src="../../../../../assets/images/tijeras.svg" />
+    </button>
+  </div>
+</div>
