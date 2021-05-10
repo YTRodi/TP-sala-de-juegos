@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { TatetiComponent } from './pages/games/tateti/tateti.component';
 import { PiedrapapelotijeraComponent } from './pages/games/piedrapapelotijera/piedrapapelotijera.component';
 import { CardComponent } from './components/card/card.component';
+import { MemotestComponent } from './pages/games/memotest/memotest.component';
+import { BoardComponent } from './pages/games/memotest/board/board.component';
+import { MemoblockComponent } from './pages/games/memotest/memoblock/memoblock.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { CardComponent } from './components/card/card.component';
     TatetiComponent,
     PiedrapapelotijeraComponent,
     CardComponent,
+    MemotestComponent,
+    BoardComponent,
+    MemoblockComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,5 @@
+<main class="board">
+  <div *ngFor="let memoBlock of this.memotestService.shuffledMemoBlocks">
+    <app-memoblock [memoBlock]="memoBlock"></app-memoblock>
+  </div>
+</main>

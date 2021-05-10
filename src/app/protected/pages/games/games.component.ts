@@ -20,6 +20,12 @@ export class GamesComponent implements OnInit {
       image: '../../../../assets/images/piedrapapelotijeras.png',
       alt: 'ppt image',
     },
+    {
+      title: 'Memotest',
+      to: '/protected/games/memotest',
+      // image: '../../../../assets/images/piedrapapelotijeras.png',
+      alt: 'memotest image',
+    },
   ];
 
   constructor() {}
