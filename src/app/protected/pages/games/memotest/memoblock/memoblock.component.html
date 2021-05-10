@@ -1,0 +1,19 @@
+<div
+  class="memo-block"
+  (click)="
+    !this.memoBlock.flipped &&
+      !this.memotestService.animating &&
+      this.memotestService.handleMemoClick(this.memoBlock)
+  "
+>
+  <div
+    class="memo-block-inner"
+    [ngClass]="{ 'memo-block-flipped': this.memoBlock.flipped }"
+  >
+    <div class="memo-block-front"></div>
+
+    <div class="memo-block-back">
+      <img [src]="this.memoBlock.image" alt="memotest image" width="100%" />
+    </div>
+  </div>
+</div>
