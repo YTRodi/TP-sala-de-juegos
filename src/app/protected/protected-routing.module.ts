@@ -8,6 +8,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { GamesComponent } from './pages/games/games.component';
 import { TatetiComponent } from './pages/games/tateti/tateti.component';
 import { PiedrapapelotijeraComponent } from './pages/games/piedrapapelotijera/piedrapapelotijera.component';
+import { MemotestComponent } from './pages/games/memotest/memotest.component';
+import { SnakeComponent } from './pages/games/snake/snake.component';
 
 const routes: Routes = [
   {
@@ -20,6 +22,14 @@ const routes: Routes = [
       {
         path: 'games/piedrapapelotijeras',
         component: PiedrapapelotijeraComponent,
+      },
+      {
+        path: 'games/memotest',
+        component: MemotestComponent,
+      },
+      {
+        path: 'games/snake',
+        component: SnakeComponent,
       },
       { path: 'about', component: AboutComponent },
       { path: 'chat', component: ChatComponent },
