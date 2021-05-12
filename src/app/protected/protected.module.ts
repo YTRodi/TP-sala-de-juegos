@@ -17,6 +17,7 @@ import { CardComponent } from './components/card/card.component';
 import { MemotestComponent } from './pages/games/memotest/memotest.component';
 import { BoardComponent } from './pages/games/memotest/board/board.component';
 import { MemoblockComponent } from './pages/games/memotest/memoblock/memoblock.component';
+import { SnakeComponent } from './pages/games/snake/snake.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MemoblockComponent } from './pages/games/memotest/memoblock/memoblock.c
     MemotestComponent,
     BoardComponent,
     MemoblockComponent,
+    SnakeComponent,
   ],
   imports: [
     CommonModule,
