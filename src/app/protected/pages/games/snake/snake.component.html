@@ -1,0 +1,32 @@
+<h1 class="title">Score: {{ this.score }}</h1>
+
+<div class="btn-wrapper">
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="this.playAgain"
+    (click)="this.newGame()"
+  >
+    Jugar de nuevo
+  </button>
+</div>
+
+<div class="container">
+  <canvas id="snakeboard" width="400" height="400" #gameCanvas></canvas>
+</div>
+
+<div class="keys">
+  <div class="up arr" (click)="this.change_direction_buttons($event)">
+    <i class="fa fa-arrow-up"></i>
+  </div>
+  <br />
+  <div class="left arr" (click)="this.change_direction_buttons($event)">
+    <i class="fa fa-arrow-left"></i>
+  </div>
+  <div class="down arr" (click)="this.change_direction_buttons($event)">
+    <i class="fa fa-arrow-down"></i>
+  </div>
+  <div class="right arr" (click)="this.change_direction_buttons($event)">
+    <i class="fa fa-arrow-right"></i>
+  </div>
+</div>

@@ -33,6 +33,8 @@
     {{ STATUS_DISPLAY }}
   </h2>
   <button
+    mat-raised-button
+    color="primary"
     *ngIf="currentPlayer"
     class="game-restart"
     (click)="handleRestartGame()"

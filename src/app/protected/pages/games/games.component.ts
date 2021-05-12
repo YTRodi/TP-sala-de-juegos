@@ -23,8 +23,14 @@ export class GamesComponent implements OnInit {
     {
       title: 'Memotest',
       to: '/protected/games/memotest',
-      // image: '../../../../assets/images/piedrapapelotijeras.png',
+      image: '../../../../assets/images/memotest.png',
       alt: 'memotest image',
+    },
+    {
+      title: 'Snake',
+      to: '/protected/games/snake',
+      image: '../../../../assets/images/snake.png',
+      alt: 'snake image',
     },
   ];
 
