@@ -29,7 +29,7 @@ export class GamesComponent implements OnInit {
     {
       title: 'Snake',
       to: '/protected/games/snake',
-      // image: '../../../../assets/images/memotest.png',
+      image: '../../../../assets/images/snake.png',
       alt: 'snake image',
     },
   ];
