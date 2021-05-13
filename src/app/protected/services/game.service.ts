@@ -41,6 +41,7 @@ export class GameService {
         // (ref) => ref.orderBy('savedAt', 'desc')
         (ref) => ref.where('game', '==', gameName)
       )
+
       .valueChanges();
   }
 

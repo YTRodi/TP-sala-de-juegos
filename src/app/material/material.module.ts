@@ -18,6 +18,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   exports: [
@@ -38,6 +40,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatRadioModule,
     MatTableModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSliderModule,
   ],
 })
 export class MaterialModule {}

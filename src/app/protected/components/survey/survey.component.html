@@ -1,0 +1,160 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <h1>Encuesta</h1>
+
+  <form
+    class="form-survey"
+    [formGroup]="this.formGroup"
+    (ngSubmit)="this.sendSurvey()"
+  >
+    <!-- Nombre -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ingresa tu nombre</mat-label>
+      <input matInput placeholder="Aa" formControlName="nombre" />
+      <mat-error
+        *ngIf="
+          formGroup.get('nombre')?.errors?.required &&
+          formGroup.get('nombre')?.touched
+        "
+      >
+        El nombre es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Apellido -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ingresa tu apellido</mat-label>
+      <input matInput placeholder="Aa" formControlName="apellido" />
+      <mat-error
+        *ngIf="
+          formGroup.get('apellido')?.errors?.required &&
+          formGroup.get('apellido')?.touched
+        "
+      >
+        El apellido es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Edad -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ingresa tu edad</mat-label>
+      <input matInput type="number" placeholder="Aa" formControlName="edad" />
+      <mat-error
+        *ngIf="
+          formGroup.get('edad')?.errors?.required &&
+          formGroup.get('edad')?.touched
+        "
+      >
+        La edad es requerido
+      </mat-error>
+
+      <mat-error
+        *ngIf="
+          formGroup.get('edad')?.errors?.min ||
+          (formGroup.get('edad')?.errors?.max && formGroup.get('edad')?.touched)
+        "
+      >
+        La edad debe ser mínimo 18 y máximo 99
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Número de teléfono -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ingresa tu número de teléfono</mat-label>
+      <input
+        matInput
+        type="tel"
+        placeholder="ej: 1132254399"
+        formControlName="numTelefono"
+      />
+      <mat-error
+        *ngIf="
+          formGroup.get('numTelefono')?.errors?.required &&
+          formGroup.get('numTelefono')?.touched
+        "
+      >
+        El número de teléfono es requerido
+      </mat-error>
+
+      <mat-error *ngIf="formGroup.get('numTelefono')?.errors?.pattern">
+        El número de teléfono tiene que contener 10 números
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Pregunta uno -->
+    <mat-radio-group formControlName="preguntaUno">
+      <mat-label class="items-center"
+        >¿Cómo fue tu experiencia en la sala de juegos?</mat-label
+      >
+      <div class="radios">
+        <mat-radio-button value="Mala">Mala</mat-radio-button>
+        <mat-radio-button value="Regular" checked>Regular</mat-radio-button>
+        <mat-radio-button value="Buena">Buena</mat-radio-button>
+      </div>
+      <mat-error
+        *ngIf="
+          formGroup.get('preguntaUno')?.errors?.required &&
+          formGroup.get('preguntaUno')?.touched
+        "
+      >
+        La experiencia en la sala de juegos es requerida
+      </mat-error>
+    </mat-radio-group>
+
+    <br />
+
+    <!-- Pregunta dos -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>¿Que podemos mejorar?</mat-label>
+      <textarea
+        style="height: 70px"
+        matInput
+        #textarea
+        maxlength="100"
+        placeholder="Aa"
+        formControlName="preguntaDos"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          formGroup.get('preguntaDos')?.errors?.required &&
+          formGroup.get('preguntaDos')?.touched
+        "
+      >
+        Que podemos mejorar es requerido
+      </mat-error>
+      <mat-hint align="end">{{ textarea.value?.length || 0 }}/100</mat-hint>
+    </mat-form-field>
+
+    <div class="items-center">
+      <mat-label>¿Cómo nos puntuarias?</mat-label>
+      <mat-slider
+        class="full-width"
+        color="primary"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="10"
+        formControlName="preguntaTres"
+      ></mat-slider>
+    </div>
+
+    <button
+      class="items-center"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="this.formGroup.invalid"
+    >
+      Enviar encuesta
+    </button>
+  </form>
+</div>
+
+<!-- <small
+  class="invalid"
+  *ngIf="
+    formGroup.get('nombre')?.errors?.required &&
+    formGroup.get('nombre')?.touched
+  "
+  >El nombre es requerido</small
+> -->

@@ -8,6 +8,7 @@ import {
 import firebase from 'firebase';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GameService } from 'src/app/protected/services/game.service';
+import { SurveyService } from 'src/app/protected/services/survey.service';
 
 @Component({
   selector: 'app-snake',
@@ -45,10 +46,12 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   public dy = 0;
   public playAgain: boolean = false;
   public clicked = false;
+  public counter = 0;
 
   constructor(
     private authService: AuthService,
-    private gameService: GameService
+    private gameService: GameService,
+    private surveyService: SurveyService
   ) {}
 
   ngOnInit(): any {
@@ -128,6 +131,10 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   }
 
   newGame() {
+    this.counter++;
+    if (this.counter === 4) {
+      this.surveyService.openDialog();
+    }
     this.playAgain = false;
     this.snake = [
       { x: 200, y: 200 },

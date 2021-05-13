@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GameService } from 'src/app/protected/services/game.service';
+import { SurveyService } from 'src/app/protected/services/survey.service';
 
 @Component({
   selector: 'app-tateti',
@@ -33,12 +34,20 @@ export class TatetiComponent implements OnInit {
     [2, 4, 6],
   ];
 
+  public counter = 0;
+
   constructor(
     private authService: AuthService,
-    private gameService: GameService
+    private gameService: GameService,
+    public surveyService: SurveyService
   ) {}
 
   handleRestartGame() {
+    this.counter++;
+    if (this.counter === 4) {
+      this.surveyService.openDialog();
+    }
+
     this.gameActive = true;
     this.currentPlayer = '';
     this.restartGameState();

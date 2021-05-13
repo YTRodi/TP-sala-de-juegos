@@ -10,7 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { GamesComponent } from './pages/games/games.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ChatComponent } from './pages/chat/chat.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TatetiComponent } from './pages/games/tateti/tateti.component';
 import { PiedrapapelotijeraComponent } from './pages/games/piedrapapelotijera/piedrapapelotijera.component';
 import { CardComponent } from './components/card/card.component';
@@ -20,6 +20,7 @@ import { MemoblockComponent } from './pages/games/memotest/memoblock/memoblock.c
 import { SnakeComponent } from './pages/games/snake/snake.component';
 import { ScoreTableComponent } from './components/score-table/score-table.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SurveyComponent } from './components/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SnakeComponent,
     ScoreTableComponent,
     SpinnerComponent,
+    SurveyComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MaterialModule,
     ProtectedRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ProtectedModule {}

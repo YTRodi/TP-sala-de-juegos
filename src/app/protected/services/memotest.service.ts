@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GameService } from 'src/app/protected/services/game.service';
+import { SurveyService } from './survey.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +19,12 @@ export class MemotestService {
   public interval: any;
   public timer: number = 0;
   public n: number = 0;
+  public counter = 0;
 
   constructor(
     private authService: AuthService,
-    private gameService: GameService
+    private gameService: GameService,
+    public surveyService: SurveyService
   ) {
     this.authService
       .getCurrentUser()
@@ -64,6 +67,11 @@ export class MemotestService {
       );
 
       if (this.gameOver) {
+        this.counter++;
+        if (this.counter === 4) {
+          this.surveyService.openDialog();
+        }
+
         const objToSave = {
           user: {
             uid: this.currentUser.uid,

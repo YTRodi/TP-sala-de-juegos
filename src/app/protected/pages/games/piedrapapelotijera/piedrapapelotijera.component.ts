@@ -8,6 +8,7 @@ import {
 import firebase from 'firebase';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { GameService } from 'src/app/protected/services/game.service';
+import { SurveyService } from 'src/app/protected/services/survey.service';
 
 const ROCK = 'piedra';
 const PAPER = 'papel';
@@ -36,10 +37,12 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
   @ViewChild('machineImg') machineImg: ElementRef<HTMLImageElement> | undefined;
 
   public isPlaying: boolean = false;
+  public counter = 0;
 
   constructor(
     private authService: AuthService,
-    private gameService: GameService
+    private gameService: GameService,
+    private surveyService: SurveyService
   ) {}
 
   ngOnInit(): any {
@@ -70,6 +73,11 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
   }
 
   play(userOption: string) {
+    this.counter++;
+    if (this.counter === 4) {
+      this.surveyService.openDialog();
+    }
+
     if (this.isPlaying) return;
 
     this.isPlaying = true;
