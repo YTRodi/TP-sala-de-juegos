@@ -38,7 +38,7 @@ export class GameService {
     return this.afs
       .collection<ScoreI>(
         this.nameCollectionDB,
-        // (ref) => ref.orderBy('savedAt', 'desc')
+        // (ref) => ref.orderBy('savedAt', 'desc') // NO ME DEJA TRAERLOS ASÍ
         (ref) => ref.where('game', '==', gameName)
       )
 
