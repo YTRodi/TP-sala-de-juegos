@@ -163,6 +163,7 @@ export class SnakeComponent implements OnInit, AfterViewInit {
         score: this.score,
       };
       this.gameService.saveScoreGame(objToSave);
+      this.score = 0;
       return;
     }
 
