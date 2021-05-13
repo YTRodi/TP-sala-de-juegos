@@ -7,7 +7,7 @@ import { GameService } from 'src/app/protected/services/game.service';
   providedIn: 'root',
 })
 export class MemotestService {
-  public currentUser: firebase.UserInfo | null = null;
+  public currentUser!: firebase.User;
   public scoresGame: any;
   public playAgain: boolean = false;
 
@@ -26,7 +26,7 @@ export class MemotestService {
     this.authService
       .getCurrentUser()
       .then((data: firebase.User) => {
-        this.currentUser = data.providerData[0];
+        this.currentUser = data;
       })
       .catch((err) => console.error(err));
 
@@ -64,12 +64,19 @@ export class MemotestService {
       );
 
       if (this.gameOver) {
-        this.gameService.saveScoreGame({
-          user: this.currentUser,
+        const objToSave = {
+          user: {
+            uid: this.currentUser.uid,
+            email: this.currentUser.email,
+            displayName: this.currentUser.displayName,
+            photoURL: this.currentUser.photoURL,
+          },
           savedAt: new Date().getTime(),
           game: 'memotest',
-          score: this.timer,
-        });
+          score: `${this.timer} seg`,
+        };
+        this.gameService.saveScoreGame(objToSave);
+
         this.playAgain = true;
         this.timer = 0;
         clearInterval(this.interval);

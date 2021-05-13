@@ -1,4 +1,13 @@
 .table-container {
   height: 300px;
   overflow: auto;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }

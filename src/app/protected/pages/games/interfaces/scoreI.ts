@@ -1,8 +1,6 @@
-import firebase from 'firebase';
-
 export interface ScoreI {
-  user: firebase.UserInfo | null;
+  user?: object;
   game: string;
-  savedAt: Date | number;
+  savedAt: number;
   score?: number | string;
 }

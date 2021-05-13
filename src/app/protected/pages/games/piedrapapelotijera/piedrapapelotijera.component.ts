@@ -23,7 +23,7 @@ const LOST = 2;
   styleUrls: ['./piedrapapelotijera.component.css'],
 })
 export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
-  public currentUser: firebase.UserInfo | null = null;
+  public currentUser!: firebase.User;
   public scoresGame: any;
 
   public resultText: string | null = null;
@@ -46,7 +46,7 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
     this.authService
       .getCurrentUser()
       .then((data: firebase.User) => {
-        this.currentUser = data.providerData[0];
+        this.currentUser = data;
       })
       .catch((err) => console.error(err));
 
@@ -102,7 +102,12 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
       );
 
       const dataToTable = {
-        user: this.currentUser,
+        user: {
+          uid: this.currentUser.uid,
+          email: this.currentUser.email,
+          displayName: this.currentUser.displayName,
+          photoURL: this.currentUser.photoURL,
+        },
         savedAt: new Date().getTime(),
         game: 'ppt',
       };

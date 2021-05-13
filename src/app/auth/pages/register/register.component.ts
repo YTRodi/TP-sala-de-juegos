@@ -59,38 +59,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //! FASE DE PRUEBAS
-  matchValidator(
-    controlName: string,
-    matchingControlName: string
-  ): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const controlNameRefValue = control.get(controlName)?.value;
-      const matchingControlRefValue = control.get(matchingControlName)?.value;
-
-      // const result = controlNameRefValue !== matchingControlRefValue
-      // console.log(control.value)
-      // console.log({ match: { value: controlNameRef } })
-
-      /**
-       * RETORNA:
-       *  null: si el valor de control es válido.
-       *  o un objeto de error de validación
-       */
-      // console.log('PASSWORDS DISTINTOS: ' + result)
-      // console.log(this.registerForm?.controls)
-      // const result = (controlNameRefValue !== matchingControlRefValue) ? { match: false } : null;
-      const result =
-        matchingControlRefValue !== controlNameRefValue
-          ? { match: { value: controlNameRefValue } }
-          : null;
-      console.log(result);
-
-      return result;
-      // return (controlNameRefValue !== matchingControlRefValue) ? { match: { value: controlNameRefValue } } : null;
-    };
-  }
-
   getErrorMessageUserName(): string {
     if (this.userName.hasError('required')) {
       return 'Debes ingresar un valor';
@@ -139,11 +107,12 @@ export class RegisterComponent implements OnInit {
         email,
         passwords: { password },
       } = this.registerForm.value;
-      const user = await this.angularFireAuthService.registerWithEmailAndPassword(
-        userName,
-        email,
-        password
-      );
+      const user =
+        await this.angularFireAuthService.registerWithEmailAndPassword(
+          userName,
+          email,
+          password
+        );
       const objUserForLog: UserLogI = { email, loggedAt: new Date().getTime() };
 
       if (user) {

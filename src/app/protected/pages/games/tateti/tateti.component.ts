@@ -9,7 +9,7 @@ import { GameService } from 'src/app/protected/services/game.service';
   styleUrls: ['./tateti.component.css'],
 })
 export class TatetiComponent implements OnInit {
-  public currentUser: firebase.UserInfo | null = null;
+  public currentUser!: firebase.User;
   public scoresGame: any;
 
   public currentPlayer: any = '';
@@ -94,13 +94,18 @@ export class TatetiComponent implements OnInit {
 
     if (roundWon) {
       this.handleStatusDisplay(this.WIN_MESSAGE());
-      this.gameService.saveScoreGame({
-        user: this.currentUser,
+      const objToSave = {
+        user: {
+          uid: this.currentUser.uid,
+          email: this.currentUser.email,
+          displayName: this.currentUser.displayName,
+          photoURL: this.currentUser.photoURL,
+        },
         savedAt: new Date().getTime(),
         game: 'tateti',
         score: 1,
-      });
-
+      };
+      this.gameService.saveScoreGame(objToSave);
       this.gameActive = false;
       return;
     }
@@ -131,7 +136,7 @@ export class TatetiComponent implements OnInit {
     this.authService
       .getCurrentUser()
       .then((data: firebase.User) => {
-        this.currentUser = data.providerData[0];
+        this.currentUser = data;
       })
       .catch((err) => console.error(err));
 

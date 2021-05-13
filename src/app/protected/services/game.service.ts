@@ -35,8 +35,6 @@ export class GameService {
   }
 
   public getScoreByGameName(gameName: string) {
-    console.log(gameName);
-
     return this.afs
       .collection<ScoreI>(
         this.nameCollectionDB,
@@ -47,6 +45,10 @@ export class GameService {
   }
 
   public saveScoreGame(data: ScoreI) {
-    return this.scoreCollection.add(data);
+    try {
+      this.scoreCollection.add(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

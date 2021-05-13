@@ -27,9 +27,7 @@ export class HomeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     try {
       this.user = await this.angularFireAuthService.getCurrentUser();
-      // console.log(this.user);
     } catch (error) {
-      // Este error puedo mostrarlo en un snackBar
       console.log(error.message);
     }
   }
