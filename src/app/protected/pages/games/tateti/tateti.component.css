@@ -31,3 +31,10 @@
 .radio-button {
   margin: 5px;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

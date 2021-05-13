@@ -16,6 +16,21 @@ export class MemotestComponent implements OnInit {
     public memotestService: MemotestService,
     private pokemonService: RickAndMortyService
   ) {
+    this.newGame();
+  }
+
+  ngOnInit(): void {}
+
+  shuffleArray(a: any): Array<any> {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  newGame() {
+    this.imagesList = [];
     this.pokemonService.getData().subscribe(({ results }: any) => {
       results.map((data: any, index: number) => {
         if (index < 6) {
@@ -40,13 +55,8 @@ export class MemotestComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
-
-  shuffleArray(a: any): Array<any> {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
+  playGame() {
+    this.newGame();
+    this.memotestService.startInterval();
   }
 }

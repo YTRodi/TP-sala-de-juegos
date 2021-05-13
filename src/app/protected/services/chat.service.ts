@@ -8,12 +8,6 @@ import { UserI } from '../../auth/pages/interfaces/user';
 import { MessageI } from '../pages/chat/interfaces/message';
 
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
-// TODO: ORDENAR IMPORTS!!!
-// TODO: ORDENAR IMPORTS!!!
-// TODO: ORDENAR IMPORTS!!!
-// TODO: ORDENAR IMPORTS!!!
 
 @Injectable({
   providedIn: 'root',
@@ -52,12 +46,11 @@ export class ChatService {
 
   async addMessage(textMessage: string) {
     try {
-      // TODO: Falta uid del user
       const message: MessageI = {
         uid: this.currentUser?.uid,
         name: this.currentUser?.displayName,
         message: textMessage,
-        createdAt: new Date().getTime(), // TODO: puede ser el firebase.field algo asi? asi le mando un timestamp...
+        createdAt: new Date().getTime(),
         image: this.currentUser?.photoURL,
       };
 

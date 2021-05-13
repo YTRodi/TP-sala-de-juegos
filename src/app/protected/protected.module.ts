@@ -18,6 +18,8 @@ import { MemotestComponent } from './pages/games/memotest/memotest.component';
 import { BoardComponent } from './pages/games/memotest/board/board.component';
 import { MemoblockComponent } from './pages/games/memotest/memoblock/memoblock.component';
 import { SnakeComponent } from './pages/games/snake/snake.component';
+import { ScoreTableComponent } from './components/score-table/score-table.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { SnakeComponent } from './pages/games/snake/snake.component';
     BoardComponent,
     MemoblockComponent,
     SnakeComponent,
+    ScoreTableComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,

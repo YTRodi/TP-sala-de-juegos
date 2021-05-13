@@ -31,13 +31,13 @@
   text-align: center;
   justify-content: center;
   height: 250px;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .arr {
   cursor: pointer;
   width: 80px;
-  height: 80px;
+  /* height: 80px; */
   text-align: center;
   line-height: 100px;
   background: grey;
@@ -54,4 +54,11 @@
 .up {
   position: relative;
   top: -4px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

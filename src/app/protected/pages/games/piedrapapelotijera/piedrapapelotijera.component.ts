@@ -5,6 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import firebase from 'firebase';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { GameService } from 'src/app/protected/services/game.service';
 
 const ROCK = 'piedra';
 const PAPER = 'papel';
@@ -20,6 +23,9 @@ const LOST = 2;
   styleUrls: ['./piedrapapelotijera.component.css'],
 })
 export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
+  public currentUser: firebase.UserInfo | null = null;
+  public scoresGame: any;
+
   public resultText: string | null = null;
   public baseImgUrl = '../../../../../assets/images';
   public imgRock = `${this.baseImgUrl}/piedra.svg`;
@@ -31,9 +37,23 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
 
   public isPlaying: boolean = false;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private gameService: GameService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): any {
+    this.authService
+      .getCurrentUser()
+      .then((data: firebase.User) => {
+        this.currentUser = data.providerData[0];
+      })
+      .catch((err) => console.error(err));
+
+    this.gameService.getScoreByGameName('ppt').subscribe((scoresFiltered) => {
+      this.scoresGame = scoresFiltered;
+    });
+  }
 
   ngAfterViewInit() {}
 
@@ -81,17 +101,35 @@ export class PiedrapapelotijeraComponent implements OnInit, AfterViewInit {
         `../../../../../assets/images/${machineOption}.svg`
       );
 
+      const dataToTable = {
+        user: this.currentUser,
+        savedAt: new Date().getTime(),
+        game: 'ppt',
+      };
+
       switch (result) {
         case TIE:
           this.resultText = 'Empate!';
+          this.gameService.saveScoreGame({
+            ...dataToTable,
+            score: 'Empate!',
+          });
           break;
 
         case WIN:
           this.resultText = 'Tu ganas! 😁';
+          this.gameService.saveScoreGame({
+            ...dataToTable,
+            score: 'Victoria aplastante!',
+          });
           break;
 
         case LOST:
           this.resultText = 'Has perdido! 😭';
+          this.gameService.saveScoreGame({
+            ...dataToTable,
+            score: 'Has perdido!',
+          });
           break;
       }
 

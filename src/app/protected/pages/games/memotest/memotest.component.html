@@ -1,4 +1,37 @@
 <h1 class="title">MemoTest</h1>
-<h3 class="subtitle" *ngIf="this.memotestService.gameOver">Has ganado!</h3>
+<p class="subtitle" *ngIf="this.memotestService.gameOver">Has ganado!</p>
+
+<div class="btn-wrapper">
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="this.memotestService.playAgain"
+    (click)="this.playGame()"
+  >
+    Jugar de nuevo
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="!this.memotestService.playAgain"
+    (click)="this.playGame()"
+  >
+    Empezar timer
+  </button>
+</div>
+
+<h2 style="display: flex; justify-content: center; align-items: center">
+  Tiempo resolviendo: {{ this.memotestService.timer }} seg
+</h2>
 
 <app-board></app-board>
+
+<div class="wrapper">
+  <mat-label><h1>PUNTAJES</h1></mat-label>
+  <app-spinner [isLoading]="!this.memotestService.scoresGame"></app-spinner>
+  <app-score-table
+    [scoreList]="this.memotestService.scoresGame"
+    *ngIf="this.memotestService.scoresGame"
+  ></app-score-table>
+</div>

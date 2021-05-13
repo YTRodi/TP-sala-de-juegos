@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ICard } from '../../components/card/interface/card';
-
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',

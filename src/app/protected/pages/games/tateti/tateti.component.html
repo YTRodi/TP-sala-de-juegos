@@ -42,3 +42,12 @@
     Restablecer
   </button>
 </div>
+
+<div class="wrapper">
+  <mat-label><h1>PUNTAJES</h1></mat-label>
+  <app-spinner [isLoading]="!this.scoresGame"></app-spinner>
+  <app-score-table
+    [scoreList]="this.scoresGame"
+    *ngIf="this.scoresGame"
+  ></app-score-table>
+</div>

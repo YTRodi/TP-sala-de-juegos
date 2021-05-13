@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { GameService } from 'src/app/protected/services/game.service';
 
 @Component({
   selector: 'app-tateti',
@@ -6,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tateti.component.css'],
 })
 export class TatetiComponent implements OnInit {
+  public currentUser: firebase.UserInfo | null = null;
+  public scoresGame: any;
+
   public currentPlayer: any = '';
   public typePlayers: string[] = ['X', 'O'];
 
@@ -27,7 +33,10 @@ export class TatetiComponent implements OnInit {
     [2, 4, 6],
   ];
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private gameService: GameService
+  ) {}
 
   handleRestartGame() {
     this.gameActive = true;
@@ -85,6 +94,13 @@ export class TatetiComponent implements OnInit {
 
     if (roundWon) {
       this.handleStatusDisplay(this.WIN_MESSAGE());
+      this.gameService.saveScoreGame({
+        user: this.currentUser,
+        savedAt: new Date().getTime(),
+        game: 'tateti',
+        score: 1,
+      });
+
       this.gameActive = false;
       return;
     }
@@ -111,5 +127,18 @@ export class TatetiComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService
+      .getCurrentUser()
+      .then((data: firebase.User) => {
+        this.currentUser = data.providerData[0];
+      })
+      .catch((err) => console.error(err));
+
+    this.gameService
+      .getScoreByGameName('tateti')
+      .subscribe((scoresFiltered) => {
+        this.scoresGame = scoresFiltered;
+      });
+  }
 }

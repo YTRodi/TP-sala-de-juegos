@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import firebase from 'firebase';
+import { AuthService } from '../auth/services/auth.service';
+
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -10,6 +13,8 @@ import { TatetiComponent } from './pages/games/tateti/tateti.component';
 import { PiedrapapelotijeraComponent } from './pages/games/piedrapapelotijera/piedrapapelotijera.component';
 import { MemotestComponent } from './pages/games/memotest/memotest.component';
 import { SnakeComponent } from './pages/games/snake/snake.component';
+
+// const currentUser: firebase.User = AuthService.prototype.getCurrentUser().then()
 
 const routes: Routes = [
   {
@@ -30,6 +35,7 @@ const routes: Routes = [
       {
         path: 'games/snake',
         component: SnakeComponent,
+        data: { nombre: 'pepe' },
       },
       { path: 'about', component: AboutComponent },
       { path: 'chat', component: ChatComponent },

@@ -16,6 +16,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   exports: [
@@ -34,6 +36,8 @@ import { MatRadioModule } from '@angular/material/radio';
     MatChipsModule,
     ScrollingModule,
     MatRadioModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}

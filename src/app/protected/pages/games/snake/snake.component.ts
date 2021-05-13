@@ -5,6 +5,9 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import firebase from 'firebase';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { GameService } from 'src/app/protected/services/game.service';
 
 @Component({
   selector: 'app-snake',
@@ -16,8 +19,10 @@ export class SnakeComponent implements OnInit, AfterViewInit {
     | ElementRef<HTMLCanvasElement>
     | undefined;
 
-  public snakeboard_ctx: any;
+  public currentUser: firebase.UserInfo | null = null;
+  public scoresGame: any;
 
+  public snakeboard_ctx: any;
   public board_border = 'black';
   public board_background = 'white';
   public snake_col = 'lightblue';
@@ -41,9 +46,23 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   public playAgain: boolean = false;
   public clicked = false;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private gameService: GameService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): any {
+    this.authService
+      .getCurrentUser()
+      .then((data: firebase.User) => {
+        this.currentUser = data.providerData[0];
+      })
+      .catch((err) => console.error(err));
+
+    this.gameService.getScoreByGameName('snake').subscribe((scoresFiltered) => {
+      this.scoresGame = scoresFiltered;
+    });
+  }
 
   change_direction_buttons = (event: any) => {
     const keyPressed = event.target.parentElement.className;
@@ -125,6 +144,12 @@ export class SnakeComponent implements OnInit, AfterViewInit {
   main() {
     if (this.has_game_ended()) {
       this.playAgain = true;
+      this.gameService.saveScoreGame({
+        user: this.currentUser,
+        savedAt: new Date().getTime(),
+        game: 'snake',
+        score: this.score,
+      });
       return;
     }
 
